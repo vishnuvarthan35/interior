@@ -40,5 +40,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Output image URL
-        run: echo "Image pushed: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: echo "Image pushed:$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
